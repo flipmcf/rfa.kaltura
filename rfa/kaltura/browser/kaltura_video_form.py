@@ -1,6 +1,15 @@
+"""Private, Authenticated views for Kaltura Videos (edit rights)"""
+
 from zope.interface import Interface
 from zope import schema
 from zope.i18nmessageid import MessageFactory
+
+from z3c.form import button
+from z3c.form import form, field
+from z3c.form.browser.checkbox import CheckBoxFieldWidget
+
+from Products.statusmessages.interfaces import IStatusMessage
+
 _ = MessageFactory('kaltura_video')
 
 class IKalturaVideoForm(Interface):    
@@ -11,10 +20,16 @@ class IKalturaVideoForm(Interface):
     filename = schema.TextLine(title=u'Filename')  
     url = schema.TextLine(title=u'URL', readonly=True)
     
+from zope.schema.vocabulary import SimpleVocabulary #XXX Temporary until vocabulary can be moved to proper place
+class IKalturaDistributeVideoForm(Interface):
+    distChannels = schema.Choice(title=_(u'Choose Distribution Channel'),
+                               required=True,
+                               vocabulary=SimpleVocabulary.fromValues([u'foo',u'bar']),
+                            )
     
-from Products.statusmessages.interfaces import IStatusMessage
-from z3c.form import button
-from z3c.form import form, field
+    
+    
+
 
 class KalturaVideoForm(form.Form):
     fields = field.Fields(IKalturaVideoForm)
@@ -22,7 +37,6 @@ class KalturaVideoForm(form.Form):
     
     def updateWidgets(self):
         super(KalturaVideoForm, self).updateWidgets()
-
 
     @button.buttonAndHandler(u'Save')
     def handleSave(self, action):
@@ -65,6 +79,23 @@ class KalturaVideoForm(form.Form):
         redirect_url = "%s/@@kaltura_video_form" % self.context.absolute_url()
         self.request.response.redirect(redirect_url)    
         
+class KalturaDistributeVideoForm(form.Form):
+    fields = field.Fields(IKalturaDistributeVideoForm)
+    ignoreContext=True
+    
+    fields['distChannels'].widgetFactory = CheckBoxFieldWidget
+    
+    def updateWidgets(self):
+        super(KalturaDistributeVideoForm, self).updateWidgets()
+        
+    @button.buttonAndHandler(u'Save')
+    def handleSave(self, action):
+        pass
+    
+    @button.buttonAndHandler(u'Cancel')
+    def handleCancel(self, action):
+        pass
         
 from plone.z3cform.layout import wrap_form
 KalturaVideoFormView = wrap_form(KalturaVideoForm)
+DistributeFormView = wrap_form(KalturaDistributeVideoForm)

@@ -22,6 +22,14 @@
     class=".kaltura_video_form.KalturaVideoFormView"
     />    
     
+
+  <browser:page
+    name="distribute" 
+    for="rfa.kaltura.interfaces.IKalturaVideo"  
+    permission="cmf.ModifyPortalContent"
+    class=".kaltura_video_form.DistributeFormView"
+    />    
+    
   <!-- VIEWS -->
   <browser:page
     for="rfa.kaltura.interfaces.IKalturaVideo"
@@ -31,8 +39,11 @@
     permission="zope.Public"
     allowed_attributes="title
                         description
-                        playbackUrl"
-    />
+                        playbackUrl" 
+    /> <!-- allowed attributes need to be reviewed - playbackUrl was a bad idea that's long gone -->
+
+  
+
 
  <!-- Ensure that the content actions dropdowns appear for all tabs
        on objects, not just on the contents & preview tabs. -->
