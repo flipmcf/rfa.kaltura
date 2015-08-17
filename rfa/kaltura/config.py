@@ -6,6 +6,7 @@ PROJECTNAME = 'rfa.kaltura'
 ADD_PERMISSIONS = {
     # -*- extra stuff goes here -*-
     'KalturaVideo': 'rfa.kaltura: Add Kaltura Video',
+    'KalturaSmartVideo': 'rfa.kaltura: Add Kaltura Smart Video',
     'RuleBasedKalturaPlaylist': 'rfa.kaltura: Add Kaltura Playlist',
     'ManualKalturaPlaylist': 'rfa.kaltura: Add Kaltura Playlist',
 }

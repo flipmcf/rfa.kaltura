@@ -2,6 +2,7 @@
 from content_interfaces import IKalturaVideo
 from content_interfaces import IKalturaPlaylist
 from content_interfaces import IKalturaManualPlaylist, IKalturaRuleBasedPlaylist
+from content_interfaces import IKalturaSmartVideo
 
 
 from plonelayers import IRfaKalturaInstalled

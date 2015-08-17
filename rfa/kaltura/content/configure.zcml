@@ -25,5 +25,12 @@
         interface="..interfaces.IKalturaPlaylist"
         />
   </class>
+  
+  <class class=".smartvideo.KalturaSmartVideo">
+    <require
+        permission="zope2.View"
+        interface="..interfaces.IKalturaSmartVideo"
+        />
+  </class>
 
 </configure>
