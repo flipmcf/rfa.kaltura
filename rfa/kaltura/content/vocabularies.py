@@ -6,7 +6,7 @@ from plone.registry.interfaces import IRegistry
 from rfa.kaltura.controlpanel import IRfaKalturaSettings
 from rfa.kaltura.kutils import kGetPlaylistPlayers, kGetVideoPlayers
 from rfa.kaltura.kutils import kGetCategories, kGetCategoryId
-from rfa.kaltura.interfaces import IKalturaVideo
+from rfa.kaltura.interfaces import IKalturaVideo, IKalturaSmartVideo
 from rfa.kaltura.interfaces import IKalturaPlaylist
 
 def getTagVocabulary():
@@ -37,7 +37,8 @@ def getCategoryVocabulary(parent=None):
 
 def PlayerVocabularyFactory(context):
     players=[]
-    if IKalturaVideo.providedBy(context):
+    if IKalturaVideo.providedBy(context) or \
+       IKalturaSmartVideo.providedBy(context):
         players = kGetVideoPlayers()
     elif IKalturaPlaylist.providedBy(context):
         players = kGetPlaylistPlayers()

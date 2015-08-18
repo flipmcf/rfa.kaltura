@@ -7,6 +7,7 @@ from AccessControl import ClassSecurityInfo
 
 from Products.ATContentTypes.content import base
 from Products.ATContentTypes.content.schemata import ATContentTypeSchema
+from Products.ATContentTypes.content.schemata import finalizeATCTSchema
 from Products.Archetypes import atapi
 
 from rfa.kaltura.content import base as KalturaBase
@@ -17,7 +18,13 @@ SmartVideoSchema = KalturaBase.KalturaBaseSchema.copy() + \
                    KalturaBase.KalturaMetadataSchema.copy() + \
                    ATContentTypeSchema.copy()
 
+SmartVideoSchema['categories'].widget.description = "Select category to choose most recent category from"
+SmartVideoSchema['categories'].widget.description_msgid="desc_svideo_categories"
 SmartVideoSchema["entryId"].widget.description = "Entry ID of video that will be returned"
+SmartVideoSchema["tags"].widget.visible = {"edit": "invisible"}
+
+
+finalizeATCTSchema(SmartVideoSchema, moveDiscussion=False)
 
 class KalturaSmartVideo(base.ATCTContent, KalturaBase.KalturaContentMixin):
     

@@ -6,8 +6,7 @@ class IKalturaVideo(Interface):
     """Kaltura Video Content Type - stores the video file on your Kaltura account"""
 
 class IKalturaSmartVideo(Interface):
-    """Kaltura Video that gets a sinlge video from your kaltura account based on a rule"""
-
+    """Kaltura Video that gets a single video from your kaltura account based on a rule"""
 
 class IKalturaPlaylist(Interface):
     """Kaltura Playlist Content Type - 
