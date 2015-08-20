@@ -27,7 +27,6 @@ from rfa.kaltura.interfaces import IKalturaVideo
 from rfa.kaltura.config import PROJECTNAME
 
 from rfa.kaltura.content import base as KalturaBase
-from rfa.kaltura.kutils import kconnect
 from rfa.kaltura.controlpanel import IRfaKalturaSettings
 from rfa.kaltura.storage.storage import KalturaStorage
 
